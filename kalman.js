@@ -28,9 +28,11 @@ window.Kalman = function() {
 
   this.I = Matrix.I(4);
 
-  // Note that this filter does measurement first, then prediction, so the x vector stores the predicted
-  // state at the next timestep.
   this.filter = function(measuredX, measuredY) {
+    // prediction
+    this.x = this.F.multiply(this.x).add(this.u);
+    this.P = this.F.multiply(this.P).multiply(this.F.transpose());
+
     // measurement
     var Z = Matrix.create([[measuredX], [measuredY]]);
     var y = Z.subtract(this.H.multiply(this.x));
@@ -39,9 +41,6 @@ window.Kalman = function() {
     this.x = this.x.add(K.multiply(y));
     this.P = this.I.subtract(K.multiply(this.H)).multiply(this.P);
     
-    // prediction
-    this.x = this.F.multiply(this.x).add(this.u);
-    this.P = this.F.multiply(this.P).multiply(this.F.transpose());
   };
 
   this.currentX = function() {
@@ -58,5 +57,13 @@ window.Kalman = function() {
 
   this.currentVy = function() {
     return this.x.e(4,1);
+  };
+
+  this.nextX = function() {
+    return this.currentX() + this.currentVx();
+  };
+
+  this.nextY = function() {
+    return this.currentY() + this.currentVy();
   };
 };

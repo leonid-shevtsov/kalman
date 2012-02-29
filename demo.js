@@ -16,18 +16,19 @@ $(function() {
     text+='</table>';
     $('.numbers').html(text);
   }
+  updateNumbers();
 
   $('#canvas').click(function(e) {
     k.filter(e.clientX, e.clientY);
     paper.circle(e.clientX, e.clientY, 2).attr({stroke: '#777', fill: '#777'});
     if (predicted) predicted.remove();
-    predicted = paper.ellipse(k.currentX(), k.currentY(), k.P.e(1,1), k.P.e(2,2)).attr({stroke: '#373'});
+    predicted = paper.ellipse(k.nextX(), k.nextY(), k.P.e(1,1), k.P.e(2,2)).attr({stroke: '#373'});
     updateNumbers();
   });
-  updateNumbers();
 
   $('#reset').click(function() {
     paper.clear();
     k = new Kalman();
+    updateNumbers();
   });
 });
