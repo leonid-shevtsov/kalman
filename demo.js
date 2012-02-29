@@ -28,6 +28,7 @@ $(function() {
 
   $('#reset').click(function() {
     paper.clear();
+    predict = false;
     k = new Kalman();
     updateNumbers();
   });
