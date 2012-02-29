@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Kalman filter demo</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="vendor/jquery-1.7.1.js"></script>
+    <script src="vendor/sylvester.src.js"></script>
+    <script src="vendor/raphael.js"></script>
+    <script src="kalman.js"></script>
+    <script src="demo.js"></script>
+  </head>
+  <body>
+    <div id="canvas">
+    </div>
+    <div class="description">
+      <h3>4-dimensional Kalman filter demo</h3>
+
+      <ul>
+        <li><a href="http://www.udacity.com/view#Course/cs373/CourseRev/feb2012/Unit/42006/Nugget/42007">CS 373: Programming a Robotic Car: Unit 2</a></li>
+        <li><a href="http://en.wikipedia.org/wiki/Kalman_filter">Wikipedia: Kalman filters</a></li>
+      </ul>
+
+      <p>Click anywhere on the page to add measurements. The green circle is your predicted next location.</p>
+
+      <p>Keep in mind that the <i>timestep between clicks is fixed</i>, meaning it doesn't matter how often do you click.
+      Your next click always provides the location at <code>t = t + 1</code>
+      </p>
+
+      <p>The Kalman filter expects a linear movement with a constant velocity. So one thing in particular that you can see is how poorly the filter reacts to
+      sudden changes in movement direction.</p>
+
+      <p>
+        <button id="reset">Reset the demo</button>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="leonid_shevtsov">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </p>
+
+    </div>
+    <div class="numbers">
+    </div>
+    <div class="credits">
+      Made by <a href="http://leonid.shevtsov.me">Leonid Shevtsov</a> for the <a href="http://www.udacity.com/overview/Course/cs373">"CS 373: Programming a Robotic Car" course at Udacity</a>.
+    </div>
+  </body>
+</html>
